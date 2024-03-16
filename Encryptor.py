@@ -114,7 +114,7 @@ class Encryptor:
             with open(file, 'rb') as fo:
                 plaintext = fo.read()
             enc = self.encrypt(plaintext, self.key)
-            with open(file.split('/')[-1].split('.')[0]+ ".enc", 'wb') as fo:
+            with open(file.split('/')[-1].split('.')[0]+ "-encrypted.enc", 'wb') as fo:
                 fo.write(enc)
             # self.btn1.config(text='Send', command=lambda: self.send(
             #     file.split('/')[-1].split('.')[0]+".enc"))

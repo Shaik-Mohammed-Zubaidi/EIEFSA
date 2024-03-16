@@ -57,7 +57,7 @@ class Decryptor:
         plain_text = decryptor.update(ciphertext) + decryptor.finalize()
 
         # Write the decrypted data to a new file
-        output_path = f'{file_name}.png'
+        output_path = f'{file_name}-decrypted.jpeg'
         with open(output_path, 'wb') as output_file:
             output_file.write(plain_text)
 
@@ -65,6 +65,7 @@ class Decryptor:
         try:
             file = askopenfilename(parent=root)
             file_name = file.split('/')[-1].split('.')[0]
+            file_name = file_name.split('-encrypted')[0]
             with open(file, 'rb') as fo:
                 ciphertext = fo.read()
             self.decrypt(ciphertext, self.key, file_name)
