@@ -116,8 +116,8 @@ class Encryptor:
             enc = self.encrypt(plaintext, self.key)
             with open(file.split('/')[-1].split('.')[0]+ ".enc", 'wb') as fo:
                 fo.write(enc)
-            self.btn1.config(text='Send', command=lambda: self.send(
-                file.split('/')[-1].split('.')[0]+".enc"))
+            # self.btn1.config(text='Send', command=lambda: self.send(
+            #     file.split('/')[-1].split('.')[0]+".enc"))
             print("Encrypted file successfully")
         except Exception as e:
             print('some error occured while encrypting the file')

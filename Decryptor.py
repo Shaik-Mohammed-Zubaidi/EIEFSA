@@ -43,7 +43,7 @@ class Decryptor:
 
         mainloop()
 
-    def decrypt(self, ciphertext, key):
+    def decrypt(self, ciphertext, key, file_name):
         # Extract the nonce, tag, and ciphertext from the encrypted data
         nonce = ciphertext[:12]
         tag = ciphertext[12:28]
@@ -57,16 +57,17 @@ class Decryptor:
         plain_text = decryptor.update(ciphertext) + decryptor.finalize()
 
         # Write the decrypted data to a new file
-        output_path = '/Users/mohammedzubaidishaik/Downloads/decrypted_image.png'
+        output_path = f'{file_name}.png'
         with open(output_path, 'wb') as output_file:
             output_file.write(plain_text)
 
     def decrypt_file(self):
         try:
             file = askopenfilename(parent=root)
+            file_name = file.split('/')[-1].split('.')[0]
             with open(file, 'rb') as fo:
                 ciphertext = fo.read()
-            self.decrypt(ciphertext, self.key)
+            self.decrypt(ciphertext, self.key, file_name)
             print("Decrypted file successfully")
 
         except Exception as e:
